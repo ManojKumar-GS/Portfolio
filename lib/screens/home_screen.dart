@@ -30,7 +30,9 @@ class _MyHomePageState extends State<HomeScreen> {
                   height: 80,
                 ),
                 ListTile(
-                  leading: const Icon(Icons.school, size: 50),
+                  textColor: Colors.black,
+                  leading:
+                      const Icon(Icons.school, size: 50, color: Colors.black),
                   title: const Text('Education'),
                   selected: _selectedIndex == 0,
                   onTap: () {
@@ -50,7 +52,8 @@ class _MyHomePageState extends State<HomeScreen> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.school, size: 50),
+                  leading:
+                      const Icon(Icons.school, size: 50, color: Colors.black),
                   title: const Text('Hobbies'),
                   selected: _selectedIndex == 2,
                   onTap: () {
@@ -80,7 +83,9 @@ class _MyHomePageState extends State<HomeScreen> {
                               MediaQuery.sizeOf(context).height * 0.12)),
                       child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 0.4,
-                          height: MediaQuery.sizeOf(context).height * 0.18),
+                          height: MediaQuery.sizeOf(context).height * 0.18,
+                          child: Image.asset("assets/profile.png",
+                              fit: BoxFit.fitHeight)),
                     ),
                     const Expanded(
                       child: Padding(
