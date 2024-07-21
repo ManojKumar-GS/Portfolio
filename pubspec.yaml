@@ -51,6 +51,14 @@ flutter:
 
   assets:
      - assets/profile.png
+     - assets/icons/exp.png
+     - assets/icons/education.png
+     - assets/icons/github.png
+     - assets/icons/gmail.png
+     - assets/icons/phone.png
+     - assets/icons/linkdin.png
+     - assets/icons/skills.png
+     - assets/icons/hobby.png
 
   # example:
   # fonts:
