@@ -89,11 +89,13 @@ class _MoreInfoState extends State<MoreInfo> {
                     ),
                   ),
                 ),
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
                   },
                   child: Card(
+                    elevation: 15,
+                    shadowColor: Colors.black,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             MediaQuery.sizeOf(context).height * 0.12)),

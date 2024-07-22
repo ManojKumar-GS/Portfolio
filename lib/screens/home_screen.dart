@@ -111,6 +111,7 @@ class _MyHomePageState extends State<HomeScreen> {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
+                elevation: 20,
                 collapsedHeight: MediaQuery.sizeOf(context).height * 0.18,
                 surfaceTintColor: Colors.black,
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -123,10 +124,11 @@ class _MyHomePageState extends State<HomeScreen> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const MoreInfo()));
+                        Navigator.of(context).push(_createRoute());
                       },
                       child: Card(
+                        elevation: 15,
+                        shadowColor: Colors.black,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                                 MediaQuery.sizeOf(context).height * 0.12)),
@@ -223,4 +225,13 @@ class _MyHomePageState extends State<HomeScreen> {
           )),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const MoreInfo(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return child;
+    },
+  );
 }
