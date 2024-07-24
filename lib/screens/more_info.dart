@@ -13,13 +13,12 @@ class _MoreInfoState extends State<MoreInfo> {
 
   @override
   void initState() {
-    animation();
+    Future.delayed(
+        const Duration(milliseconds: 150),
+        () => setState(() {
+              offset = const Offset(0, 0);
+            }));
     super.initState();
-  }
-
-  animation() async {
-    await Future.delayed(
-        const Duration(milliseconds: 600), () => offset = const Offset(0, 0));
   }
 
   @override
@@ -41,7 +40,7 @@ class _MoreInfoState extends State<MoreInfo> {
             SliverAppBar(
               collapsedHeight: MediaQuery.sizeOf(context).height * 0.18,
               surfaceTintColor: Colors.black,
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              backgroundColor: Colors.black87,
               shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.horizontal(right: Radius.circular(150))),
@@ -72,24 +71,9 @@ class _MoreInfoState extends State<MoreInfo> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text("Manoj Kumar GS",
-                                    style: TextStyle(fontSize: 25)),
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icons/phone.png",
-                                    height: 30,
-                                    width: 30,
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
-                                      "+91 9481878819",
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                  ),
-                                ],
+                                child: Text("Flutter Full stack developer",
+                                    style: TextStyle(
+                                        fontSize: 25, color: Colors.white)),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(8.0),
