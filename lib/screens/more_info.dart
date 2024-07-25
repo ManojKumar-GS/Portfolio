@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/detail_screen.dart';
 import 'package:portfolio/screens/home_screen.dart';
 
 class MoreInfo extends StatefulWidget {
@@ -128,12 +129,53 @@ class _MoreInfoState extends State<MoreInfo> {
                   ),
                 ),
               ),
-              // centerTitle: true,
-              // title: const Text("Manoj Kumar GS ")
             ),
+            SliverToBoxAdapter(
+              child: ListView(
+                  padding: const EdgeInsets.all(20),
+                  shrinkWrap: true,
+                  children: [
+                    projectList(name: 'Portfolio', image: "assets/profile.png"),
+                    const Divider(),
+                    projectList(
+                        name: "Weather App",
+                        image: "assets/icons/education.png"),
+                    const Divider(),
+                    projectList(
+                        name: "Instagram Clone",
+                        image: "assets/icons/education.png")
+                  ]),
+            )
           ],
         ),
       ),
     ));
+  }
+
+  Widget projectList({required String name, required String image}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailScreen(name: name, image: image)));
+      },
+      child: Hero(
+        tag: name,
+        child: Card(
+          child: ListTile(
+            title: Text(
+              name,
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: AutofillHints.impp),
+            ),
+            subtitle: const Text("Flutter"),
+            contentPadding: const EdgeInsets.all(20),
+            leading: Image.asset(image, width: 100, height: 100),
+          ),
+        ),
+      ),
+    );
   }
 }
