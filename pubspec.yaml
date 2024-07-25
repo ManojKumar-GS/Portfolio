@@ -50,7 +50,12 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/profile.png
+     - assets/images/profile.png
+     - assets/images/flutterdev.png
+     - assets/images/mobileApplication.png
+     - assets/images/programming.png
+     - assets/images/team.png
+     - assets/images/versionControl.png
      - assets/icons/exp.png
      - assets/icons/education.png
      - assets/icons/github.png

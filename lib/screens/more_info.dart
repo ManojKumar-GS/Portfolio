@@ -77,7 +77,7 @@ class _MoreInfoState extends State<MoreInfo> {
                                         fontSize: 25, color: Colors.white)),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -122,7 +122,7 @@ class _MoreInfoState extends State<MoreInfo> {
                         child: SizedBox(
                             width: MediaQuery.sizeOf(context).width * 0.4,
                             height: MediaQuery.sizeOf(context).height * 0.18,
-                            child: Image.asset("assets/profile.png",
+                            child: Image.asset("assets/images/profile.png",
                                 fit: BoxFit.fitHeight)),
                       ),
                     ],
@@ -135,7 +135,8 @@ class _MoreInfoState extends State<MoreInfo> {
                   padding: const EdgeInsets.all(20),
                   shrinkWrap: true,
                   children: [
-                    projectList(name: 'Portfolio', image: "assets/profile.png"),
+                    projectList(
+                        name: 'Portfolio', image: "assets/images/profile.png"),
                     const Divider(),
                     projectList(
                         name: "Weather App",

@@ -85,7 +85,7 @@ class _MyHomePageState extends State<HomeScreen> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     MediaQuery.sizeOf(context).height * 0.12)),
-                            child: Image.asset("assets/profile.png",
+                            child: Image.asset("assets/images/profile.png",
                                 fit: BoxFit.fitHeight),
                           ),
                         ),
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<HomeScreen> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
