@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/exp.dart';
 import 'package:portfolio/screens/more_info.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,6 +45,9 @@ class _MyHomePageState extends State<HomeScreen> {
                 _scaffoldKey.currentState!.isDrawerOpen
                     ? _scaffoldKey.currentState?.closeDrawer()
                     : _scaffoldKey.currentState?.openDrawer();
+                /* Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ExampleStaggeredAnimations(),
+                ));*/
               },
               icon: const Icon(Icons.menu)),
           Column(
@@ -61,7 +65,6 @@ class _MyHomePageState extends State<HomeScreen> {
                   onTap: () {
                     setState(() {
                       offset = const Offset(1, 0);
-                      selected = !selected;
                     });
                     Future.delayed(
                         const Duration(milliseconds: 800),
@@ -123,30 +126,9 @@ class _MyHomePageState extends State<HomeScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      InkWell(
-                                        child: Image.asset(
-                                          "assets/icons/gmail.png",
-                                          height: 30,
-                                          width: 30,
-                                        ),
-                                        onTap: () {},
-                                      ),
-                                      InkWell(
-                                        child: Image.asset(
-                                          "assets/icons/linkdin.png",
-                                          height: 30,
-                                          width: 30,
-                                        ),
-                                        onTap: () {},
-                                      ),
-                                      InkWell(
-                                        child: Image.asset(
-                                          "assets/icons/github.png",
-                                          height: 30,
-                                          width: 30,
-                                        ),
-                                        onTap: () {},
-                                      ),
+                                      imageIcons(name: 'gmail', size: 30),
+                                      imageIcons(name: 'linkdin', size: 30),
+                                      imageIcons(name: 'github', size: 30),
                                     ],
                                   ),
                                 ),
@@ -161,10 +143,55 @@ class _MyHomePageState extends State<HomeScreen> {
               ),
             ],
           ),
+          Positioned(
+            bottom: MediaQuery.sizeOf(context).height * 0.02,
+            right: MediaQuery.sizeOf(context).width * 0.045,
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.2,
+              width: MediaQuery.sizeOf(context).width * 0.4,
+              child: Stack(
+                children: [
+                  AnimatedAlign(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                    alignment:
+                        selected ? Alignment.topRight : Alignment.bottomRight,
+                    child: Visibility(
+                        visible: selected,
+                        child: imageIcons(name: 'gmail', size: 50)),
+                  ),
+                  AnimatedSlide(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                    offset:
+                        selected ? const Offset(0.7, 1) : const Offset(2, 2.5),
+                    child: Visibility(
+                        visible: selected,
+                        child: imageIcons(name: 'github', size: 50)),
+                  ),
+                  AnimatedAlign(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                    alignment:
+                        selected ? Alignment.bottomLeft : Alignment.bottomRight,
+                    child: Visibility(
+                        visible: selected,
+                        child: imageIcons(name: 'linkdin', size: 50)),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ]),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(CupertinoIcons.question_circle),
+          onPressed: () {
+            setState(() {
+              selected = !selected;
+            });
+          },
+          child: selected
+              ? const Icon(Icons.close)
+              : const Icon(CupertinoIcons.question_circle),
         ),
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         drawer: BackdropFilter(
@@ -182,77 +209,80 @@ class _MyHomePageState extends State<HomeScreen> {
                   const SizedBox(
                     height: 80,
                   ),
-                  ListTile(
-                    minVerticalPadding:
-                        MediaQuery.sizeOf(context).height * 0.05,
-                    textColor: Colors.black,
-                    leading: Image.asset("assets/icons/education.png"),
-                    title: const Text(
-                      'Education',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          fontFamily: AutofillHints.birthday),
-                    ),
-                    onTap: () {
-                      _onItemTapped(0);
-                      Navigator.pop(context);
-                    },
+                  AnimatedSlide(
+                    offset: offset,
+                    duration: const Duration(milliseconds: 5000),
+                    child: drawerElements(
+                        image: "assets/icons/education.png",
+                        name: 'Education',
+                        index: 0),
                   ),
-                  ListTile(
-                    minVerticalPadding:
-                        MediaQuery.sizeOf(context).height * 0.05,
-                    leading: Image.asset("assets/icons/exp.png"),
-                    title: const Text(
-                      'Experience',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          fontFamily: AutofillHints.birthday),
-                    ),
-                    onTap: () {
-                      _onItemTapped(1);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    minVerticalPadding:
-                        MediaQuery.sizeOf(context).height * 0.05,
-                    leading: Image.asset("assets/icons/skills.png"),
-                    title: const Text(
-                      'Skills',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          fontFamily: AutofillHints.birthday),
-                    ),
-                    onTap: () {
-                      _onItemTapped(2);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    minVerticalPadding:
-                        MediaQuery.sizeOf(context).height * 0.05,
-                    leading: Image.asset("assets/icons/hobby.png"),
-                    title: const Text(
-                      'Hobbies',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          fontFamily: AutofillHints.birthday),
-                    ),
-                    onTap: () {
-                      _onItemTapped(2);
-                      Navigator.pop(context);
-                    },
-                  ),
+                  drawerElements(
+                      image: "assets/icons/exp.png",
+                      name: 'Experience',
+                      index: 1),
+                  drawerElements(
+                      image: "assets/icons/skills.png",
+                      name: 'Skills',
+                      index: 2),
+                  drawerElements(
+                      image: "assets/icons/hobby.png",
+                      name: 'Hobbies',
+                      index: 3),
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget imageIcons({required String name, required double size}) {
+    return InkWell(
+      child: Image.asset(
+        "assets/icons/$name.png",
+        height: size,
+        width: size,
+      ),
+      onTap: () {},
+    );
+  }
+
+  Widget drawerElements(
+      {required String image, required String name, required int index}) {
+    return ListTile(
+      minVerticalPadding: MediaQuery.sizeOf(context).height * 0.05,
+      textColor: Colors.black,
+      leading: Image.asset(image),
+      title: Text(
+        name,
+        style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+            fontFamily: AutofillHints.birthday),
+      ),
+      onTap: () {
+        _onItemTapped(index);
+        Navigator.pop(context);
+      },
+    );
+  }
+
+  Widget myWidget(BuildContext context) {
+    return MediaQuery.removePadding(
+      context: context,
+      removeTop: true,
+      removeBottom: true,
+      child: AnimatedList(
+          initialItemCount: 50,
+          itemBuilder:
+              (BuildContext context, int index, Animation<double> animation) {
+            return Card(
+              color: Colors.amber,
+              child: Center(child: Text('$index')),
+            );
+          }),
     );
   }
 }
