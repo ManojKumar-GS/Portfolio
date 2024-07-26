@@ -122,7 +122,7 @@ class _MoreInfoState extends State<MoreInfo> {
                         child: SizedBox(
                             width: MediaQuery.sizeOf(context).width * 0.4,
                             height: MediaQuery.sizeOf(context).height * 0.18,
-                            child: Image.asset("assets/images/profile.png",
+                            child: Image.asset("assets/images/programming.png",
                                 fit: BoxFit.fitHeight)),
                       ),
                     ],
@@ -162,6 +162,7 @@ class _MoreInfoState extends State<MoreInfo> {
       child: Hero(
         tag: name,
         child: Card(
+          borderOnForeground: true,
           child: ListTile(
             title: Text(
               name,
