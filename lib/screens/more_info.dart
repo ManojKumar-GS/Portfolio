@@ -161,9 +161,10 @@ class _MoreInfoState extends State<MoreInfo> {
       child: Hero(
         tag: name,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Card(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.all(10),
               borderOnForeground: true,
               child: ListTile(
                 title: Text(
@@ -175,9 +176,11 @@ class _MoreInfoState extends State<MoreInfo> {
                       fontFamily: AutofillHints.impp),
                 ),
                 subtitle: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
@@ -230,9 +233,9 @@ class _MoreInfoState extends State<MoreInfo> {
                 leading: Image.asset(image, width: 100, height: 100),
               ),
             ),
-            SizedBox(
+            /* SizedBox(
                 width: MediaQuery.sizeOf(context).width * 0.8,
-                child: const Divider())
+                child: const Divider())*/
           ],
         ),
       ),
