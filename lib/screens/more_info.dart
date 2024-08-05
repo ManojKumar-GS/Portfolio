@@ -11,6 +11,7 @@ class MoreInfo extends StatefulWidget {
 
 class _MoreInfoState extends State<MoreInfo> {
   Offset offset = const Offset(-1, 0);
+  List projects = [];
 
   @override
   void initState() {
@@ -19,6 +20,13 @@ class _MoreInfoState extends State<MoreInfo> {
         () => setState(() {
               offset = const Offset(0, 0);
             }));
+    projects = [
+      {'name': 'Portfolio', 'image': "assets/images/profile.png"},
+      {'name': "Weather App", 'image': "assets/images/profile.png"},
+      {'name': "Instagram Clone", 'image': "assets/images/profile.png"},
+      {'name': "Book store", 'image': "assets/images/profile.png"},
+      {'name': "Vehicle store", 'image': "assets/images/profile.png"},
+    ];
     super.initState();
   }
 
@@ -39,7 +47,7 @@ class _MoreInfoState extends State<MoreInfo> {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              collapsedHeight: MediaQuery.sizeOf(context).height * 0.18,
+              collapsedHeight: MediaQuery.sizeOf(context).height * 0.2,
               surfaceTintColor: Colors.black,
               backgroundColor: Colors.black87,
               shape: const RoundedRectangleBorder(
@@ -130,23 +138,14 @@ class _MoreInfoState extends State<MoreInfo> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: ListView(
-                  padding: const EdgeInsets.all(20),
-                  shrinkWrap: true,
-                  children: [
-                    projectList(
-                        name: 'Portfolio', image: "assets/images/profile.png"),
-                    const Divider(),
-                    projectList(
-                        name: "Weather App",
-                        image: "assets/icons/education.png"),
-                    const Divider(),
-                    projectList(
-                        name: "Instagram Clone",
-                        image: "assets/icons/education.png")
-                  ]),
-            )
+            SliverList.builder(
+              itemCount: projects.length,
+              itemBuilder: (BuildContext context, int index) {
+                return projectList(
+                    name: projects[index]['name'],
+                    image: projects[index]['image']);
+              },
+            ),
           ],
         ),
       ),
@@ -161,21 +160,80 @@ class _MoreInfoState extends State<MoreInfo> {
       },
       child: Hero(
         tag: name,
-        child: Card(
-          borderOnForeground: true,
-          child: ListTile(
-            title: Text(
-              name,
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  fontFamily: AutofillHints.impp),
+        child: Column(
+          children: [
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              borderOnForeground: true,
+              child: ListTile(
+                title: Text(
+                  name,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontFamily: AutofillHints.impp),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 10,
+                          width: 10,
+                          decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                              border: Border()),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text("Dart"),
+                        ),
+                        const SizedBox(width: 30),
+                        Container(
+                          height: 10,
+                          width: 10,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle,
+                              border: Border()),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
+                          child: Text("Others"),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        height: 10,
+                        width: 150,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              Colors.blueAccent,
+                              Colors.blue,
+                              Colors.grey
+                            ]),
+                            color: Colors.grey,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            border: Border()),
+                      ),
+                    ),
+                  ],
+                ),
+                contentPadding: const EdgeInsets.all(20),
+                leading: Image.asset(image, width: 100, height: 100),
+              ),
             ),
-            subtitle: const Text("Flutter"),
-            contentPadding: const EdgeInsets.all(20),
-            leading: Image.asset(image, width: 100, height: 100),
-          ),
+            SizedBox(
+                width: MediaQuery.sizeOf(context).width * 0.8,
+                child: const Divider())
+          ],
         ),
       ),
     );
