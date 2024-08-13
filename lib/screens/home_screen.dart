@@ -17,7 +17,26 @@ class _MyHomePageState extends State<HomeScreen> {
   int _selectedIndex = 0;
   bool selected = false;
   Offset offset = const Offset(1, 0);
-
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Settings',
+      style: optionStyle,
+    ),
+  ];
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -39,146 +58,196 @@ class _MyHomePageState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        body: Stack(children: [
-          IconButton(
-              onPressed: () {
-                _scaffoldKey.currentState!.isDrawerOpen
-                    ? _scaffoldKey.currentState?.closeDrawer()
-                    : _scaffoldKey.currentState?.openDrawer();
-                /* Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ExampleStaggeredAnimations(),
-                ));*/
-              },
-              icon: const Icon(Icons.menu)),
-          Column(
-            children: [
-              Container(
-                height: MediaQuery.sizeOf(context).height * 0.3,
-                width: MediaQuery.sizeOf(context).width,
-                decoration: ShapeDecoration(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.horizontal(left: Radius.circular(150))),
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      offset = const Offset(1, 0);
-                    });
-                    Future.delayed(
-                        const Duration(milliseconds: 800),
-                        () => Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (context) => const MoreInfo())));
-                  },
-                  child: AnimatedSlide(
-                    offset: offset,
-                    duration: const Duration(milliseconds: 600),
-                    curve: Curves.linear,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.42,
-                          height: MediaQuery.sizeOf(context).height * 0.2,
-                          child: Card(
-                            elevation: 15,
-                            shadowColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    MediaQuery.sizeOf(context).height * 0.12)),
-                            child: Image.asset("assets/images/profile.png",
-                                fit: BoxFit.fitHeight),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text("Manoj Kumar GS",
-                                      style: TextStyle(fontSize: 25)),
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/icons/phone.png",
-                                      height: 30,
-                                      width: 30,
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(
-                                        "+91 9481878819",
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      imageIcons(name: 'gmail', size: 30),
-                                      imageIcons(name: 'linkdin', size: 30),
-                                      imageIcons(name: 'github', size: 30),
-                                    ],
-                                  ),
-                                ),
-                              ],
+        body: SingleChildScrollView(
+          child: Stack(children: [
+            IconButton(
+                onPressed: () {
+                  _scaffoldKey.currentState!.isDrawerOpen
+                      ? _scaffoldKey.currentState?.closeDrawer()
+                      : _scaffoldKey.currentState?.openDrawer();
+                  /* Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ExampleStaggeredAnimations(),
+                  ));*/
+                },
+                icon: const Icon(Icons.menu)),
+            Column(
+              children: [
+                Container(
+                  height: MediaQuery.sizeOf(context).height * 0.3,
+                  width: MediaQuery.sizeOf(context).width,
+                  decoration: ShapeDecoration(
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(150))),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        offset = const Offset(1, 0);
+                      });
+                      Future.delayed(
+                          const Duration(milliseconds: 800),
+                          () => Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const MoreInfo())));
+                    },
+                    child: AnimatedSlide(
+                      offset: offset,
+                      duration: const Duration(milliseconds: 600),
+                      curve: Curves.linear,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width * 0.42,
+                            height: MediaQuery.sizeOf(context).height * 0.2,
+                            child: Card(
+                              elevation: 15,
+                              shadowColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.sizeOf(context).height *
+                                          0.12)),
+                              child: Image.asset("assets/images/profile.png",
+                                  fit: BoxFit.fitHeight),
                             ),
                           ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text("Manoj Kumar GS",
+                                        style: TextStyle(fontSize: 25)),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/icons/phone.png",
+                                        height: 30,
+                                        width: 30,
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 8.0),
+                                        child: Text(
+                                          "+91 9481878819",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        imageIcons(name: 'gmail', size: 30),
+                                        imageIcons(name: 'linkdin', size: 30),
+                                        imageIcons(name: 'github', size: 30),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text("EXPERIENCE",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w900,
+                                  foreground: Paint()
+                                    ..shader = const LinearGradient(
+                                      colors: <Color>[
+                                        Color(0xffDA44bb),
+                                        Color(0xff8921aa),
+                                        Colors.black54
+                                      ],
+                                    ).createShader(const Rect.fromLTWH(
+                                        0.0, 0.0, 200.0, 70.0)))),
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0, left: 10),
+                            child: Text("SKILLS",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w900,
+                                    foreground: Paint()
+                                      ..shader = const LinearGradient(
+                                        colors: <Color>[
+                                          Color(0xffDA44bb),
+                                          Color(0xff8921aa),
+                                          Colors.black54
+                                        ],
+                                      ).createShader(const Rect.fromLTWH(
+                                          0.0, 0.0, 200.0, 70.0)))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            itemCount: 5,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return const Card(
+                                color: Colors.purple,
+                                child: Row(
+                                  children: [
+                                    Text("Text"),
+                                    Text("Text"),
+                                    Text("Text"),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
-              ),
-              Card(
-                margin: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text("EXPERIENCE",
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w900,
-                                foreground: Paint()
-                                  ..shader = const LinearGradient(
-                                    colors: <Color>[
-                                      Color(0xffDA44bb),
-                                      Color(0xff8921aa),
-                                      Colors.black54
-                                    ],
-                                  ).createShader(const Rect.fromLTWH(
-                                      0.0, 0.0, 200.0, 70.0)))),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                margin: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                Card(
+                  margin: const EdgeInsets.all(10),
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0, left: 10),
-                          child: Text("SKILLS",
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text("EDUCATION",
                               style: TextStyle(
                                   fontSize: 25,
                                   fontStyle: FontStyle.italic,
@@ -194,149 +263,104 @@ class _MyHomePageState extends State<HomeScreen> {
                                         0.0, 0.0, 200.0, 70.0)))),
                         ),
                       ),
-                      SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          itemCount: 5,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return const Card(
-                              color: Colors.purple,
-                              child: Row(
-                                children: [
-                                  Text("Text"),
-                                  Text("Text"),
-                                  Text("Text"),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      )
                     ],
                   ),
                 ),
-              ),
-              Card(
-                margin: const EdgeInsets.all(10),
-                child: Column(
+                Card(
+                  margin: const EdgeInsets.all(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0, left: 10),
+                            child: Text("HOBBIES",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w900,
+                                    foreground: Paint()
+                                      ..shader = const LinearGradient(
+                                        colors: <Color>[
+                                          Color(0xffDA44bb),
+                                          Color(0xff8921aa),
+                                          Colors.black54
+                                        ],
+                                      ).createShader(const Rect.fromLTWH(
+                                          0.0, 0.0, 200.0, 70.0)))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            itemCount: 5,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return const Card(
+                                color: Colors.purple,
+                                child: Row(
+                                  children: [
+                                    Text("Text"),
+                                    Text("Text"),
+                                    Text("Text"),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: MediaQuery.sizeOf(context).height * 0.02,
+              right: MediaQuery.sizeOf(context).width * 0.045,
+              child: SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.2,
+                width: MediaQuery.sizeOf(context).width * 0.4,
+                child: Stack(
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text("EDUCATION",
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w900,
-                                foreground: Paint()
-                                  ..shader = const LinearGradient(
-                                    colors: <Color>[
-                                      Color(0xffDA44bb),
-                                      Color(0xff8921aa),
-                                      Colors.black54
-                                    ],
-                                  ).createShader(const Rect.fromLTWH(
-                                      0.0, 0.0, 200.0, 70.0)))),
-                      ),
+                    AnimatedAlign(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                      alignment:
+                          selected ? Alignment.topRight : Alignment.bottomRight,
+                      child: Visibility(
+                          visible: selected,
+                          child: imageIcons(name: 'gmail', size: 50)),
+                    ),
+                    AnimatedSlide(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                      offset: selected
+                          ? const Offset(0.7, 1)
+                          : const Offset(2, 2.5),
+                      child: Visibility(
+                          visible: selected,
+                          child: imageIcons(name: 'github', size: 50)),
+                    ),
+                    AnimatedAlign(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                      alignment: selected
+                          ? Alignment.bottomLeft
+                          : Alignment.bottomRight,
+                      child: Visibility(
+                          visible: selected,
+                          child: imageIcons(name: 'linkdin', size: 50)),
                     ),
                   ],
                 ),
-              ),
-              Card(
-                margin: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0, left: 10),
-                          child: Text("HOBBIES",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w900,
-                                  foreground: Paint()
-                                    ..shader = const LinearGradient(
-                                      colors: <Color>[
-                                        Color(0xffDA44bb),
-                                        Color(0xff8921aa),
-                                        Colors.black54
-                                      ],
-                                    ).createShader(const Rect.fromLTWH(
-                                        0.0, 0.0, 200.0, 70.0)))),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          itemCount: 5,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return const Card(
-                              color: Colors.purple,
-                              child: Row(
-                                children: [
-                                  Text("Text"),
-                                  Text("Text"),
-                                  Text("Text"),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: MediaQuery.sizeOf(context).height * 0.02,
-            right: MediaQuery.sizeOf(context).width * 0.045,
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.2,
-              width: MediaQuery.sizeOf(context).width * 0.4,
-              child: Stack(
-                children: [
-                  AnimatedAlign(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                    alignment:
-                        selected ? Alignment.topRight : Alignment.bottomRight,
-                    child: Visibility(
-                        visible: selected,
-                        child: imageIcons(name: 'gmail', size: 50)),
-                  ),
-                  AnimatedSlide(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                    offset:
-                        selected ? const Offset(0.7, 1) : const Offset(2, 2.5),
-                    child: Visibility(
-                        visible: selected,
-                        child: imageIcons(name: 'github', size: 50)),
-                  ),
-                  AnimatedAlign(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                    alignment:
-                        selected ? Alignment.bottomLeft : Alignment.bottomRight,
-                    child: Visibility(
-                        visible: selected,
-                        child: imageIcons(name: 'linkdin', size: 50)),
-                  ),
-                ],
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -387,6 +411,33 @@ class _MyHomePageState extends State<HomeScreen> {
               ),
             ),
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Business',
+              backgroundColor: Colors.green,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'School',
+              backgroundColor: Colors.purple,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+              backgroundColor: Colors.pink,
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
         ),
       ),
     );
