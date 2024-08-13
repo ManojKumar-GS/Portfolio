@@ -9,23 +9,52 @@ class MoreInfo extends StatefulWidget {
   State<MoreInfo> createState() => _MoreInfoState();
 }
 
-class _MoreInfoState extends State<MoreInfo> {
+class _MoreInfoState extends State<MoreInfo> with TickerProviderStateMixin {
   Offset offset = const Offset(-1, 0);
   List projects = [];
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  );
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
 
   @override
   void initState() {
+    _controller.forward();
     Future.delayed(
         const Duration(milliseconds: 150),
         () => setState(() {
               offset = const Offset(0, 0);
             }));
     projects = [
-      {'name': 'Portfolio', 'image': "assets/images/profile.png"},
-      {'name': "Weather App", 'image': "assets/images/profile.png"},
-      {'name': "Instagram Clone", 'image': "assets/images/profile.png"},
-      {'name': "Book store", 'image': "assets/images/profile.png"},
-      {'name': "Vehicle store", 'image': "assets/images/profile.png"},
+      {
+        'name': 'Portfolio',
+        'image': "assets/images/profile.png",
+        'lang': "Dart"
+      },
+      {
+        'name': "Weather App",
+        'image': "assets/images/profile.png",
+        'lang': "Dart"
+      },
+      {
+        'name': "Instagram Clone",
+        'image': "assets/images/profile.png",
+        'lang': "Dart"
+      },
+      {
+        'name': "Book store",
+        'image': "assets/images/profile.png",
+        'lang': "Java"
+      },
+      {
+        'name': "Vehicle store",
+        'image': "assets/images/profile.png",
+        'lang': "Java"
+      },
     ];
     super.initState();
   }
@@ -143,7 +172,8 @@ class _MoreInfoState extends State<MoreInfo> {
               itemBuilder: (BuildContext context, int index) {
                 return projectList(
                     name: projects[index]['name'],
-                    image: projects[index]['image']);
+                    image: projects[index]['image'],
+                    lang: projects[index]['lang']);
               },
             ),
           ],
@@ -152,7 +182,8 @@ class _MoreInfoState extends State<MoreInfo> {
     ));
   }
 
-  Widget projectList({required String name, required String image}) {
+  Widget projectList(
+      {required String name, required String image, required String lang}) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -186,14 +217,16 @@ class _MoreInfoState extends State<MoreInfo> {
                         Container(
                           height: 10,
                           width: 10,
-                          decoration: const BoxDecoration(
-                              color: Colors.blue,
+                          decoration: BoxDecoration(
+                              color: lang == "Dart"
+                                  ? Colors.blueAccent
+                                  : Colors.purple,
                               shape: BoxShape.circle,
-                              border: Border()),
+                              border: const Border()),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0),
-                          child: Text("Dart"),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(lang),
                         ),
                         const SizedBox(width: 30),
                         Container(
@@ -212,19 +245,32 @@ class _MoreInfoState extends State<MoreInfo> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        height: 10,
-                        width: 150,
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              Colors.blueAccent,
-                              Colors.blue,
-                              Colors.grey
-                            ]),
-                            color: Colors.grey,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            border: Border()),
+                      child: SizeTransition(
+                        sizeFactor: _animation,
+                        axis: Axis.horizontal,
+                        axisAlignment: -1,
+                        child: Container(
+                          height: 10,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                lang == "Dart"
+                                    ? Colors.blueAccent
+                                    : Colors.purple,
+                                lang == "Dart"
+                                    ? Colors.blueAccent
+                                    : Colors.purple,
+                                lang == "Dart"
+                                    ? Colors.blueAccent
+                                    : Colors.purple,
+                                Colors.grey
+                              ]),
+                              color: Colors.grey,
+                              shape: BoxShape.rectangle,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                              border: const Border()),
+                        ),
                       ),
                     ),
                   ],
