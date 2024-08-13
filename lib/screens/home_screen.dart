@@ -141,6 +141,160 @@ class _MyHomePageState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              Card(
+                margin: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text("EXPERIENCE",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w900,
+                                foreground: Paint()
+                                  ..shader = const LinearGradient(
+                                    colors: <Color>[
+                                      Color(0xffDA44bb),
+                                      Color(0xff8921aa),
+                                      Colors.black54
+                                    ],
+                                  ).createShader(const Rect.fromLTWH(
+                                      0.0, 0.0, 200.0, 70.0)))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Card(
+                margin: const EdgeInsets.all(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, left: 10),
+                          child: Text("SKILLS",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w900,
+                                  foreground: Paint()
+                                    ..shader = const LinearGradient(
+                                      colors: <Color>[
+                                        Color(0xffDA44bb),
+                                        Color(0xff8921aa),
+                                        Colors.black54
+                                      ],
+                                    ).createShader(const Rect.fromLTWH(
+                                        0.0, 0.0, 200.0, 70.0)))),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          itemCount: 5,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return const Card(
+                              color: Colors.purple,
+                              child: Row(
+                                children: [
+                                  Text("Text"),
+                                  Text("Text"),
+                                  Text("Text"),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                margin: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text("EDUCATION",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w900,
+                                foreground: Paint()
+                                  ..shader = const LinearGradient(
+                                    colors: <Color>[
+                                      Color(0xffDA44bb),
+                                      Color(0xff8921aa),
+                                      Colors.black54
+                                    ],
+                                  ).createShader(const Rect.fromLTWH(
+                                      0.0, 0.0, 200.0, 70.0)))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Card(
+                margin: const EdgeInsets.all(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, left: 10),
+                          child: Text("HOBBIES",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w900,
+                                  foreground: Paint()
+                                    ..shader = const LinearGradient(
+                                      colors: <Color>[
+                                        Color(0xffDA44bb),
+                                        Color(0xff8921aa),
+                                        Colors.black54
+                                      ],
+                                    ).createShader(const Rect.fromLTWH(
+                                        0.0, 0.0, 200.0, 70.0)))),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          itemCount: 5,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return const Card(
+                              color: Colors.purple,
+                              child: Row(
+                                children: [
+                                  Text("Text"),
+                                  Text("Text"),
+                                  Text("Text"),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           Positioned(
