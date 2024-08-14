@@ -17,26 +17,6 @@ class _MyHomePageState extends State<HomeScreen> {
   int _selectedIndex = 0;
   bool selected = false;
   Offset offset = const Offset(1, 0);
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -361,7 +341,11 @@ class _MyHomePageState extends State<HomeScreen> {
             ),
           ]),
         ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
         floatingActionButton: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           onPressed: () {
             setState(() {
               selected = !selected;
@@ -412,32 +396,35 @@ class _MyHomePageState extends State<HomeScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.red,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50.0),
+            child: BottomAppBar(
+              height: 60,
+              color: Theme.of(context).colorScheme.inversePrimary,
+              notchMargin: 10,
+              shape: const CircularNotchedRectangle(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: imageIcons(name: 'education', size: 40),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60.0),
+                    child: imageIcons(name: 'exp', size: 40),
+                  ),
+                  imageIcons(name: 'skills', size: 40),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: imageIcons(name: 'hobby', size: 40),
+                  ),
+                ],
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-              backgroundColor: Colors.green,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
-              backgroundColor: Colors.purple,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-              backgroundColor: Colors.pink,
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
-          onTap: _onItemTapped,
+          ),
         ),
       ),
     );
