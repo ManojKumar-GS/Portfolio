@@ -299,28 +299,29 @@ class _MyHomePageState extends State<HomeScreen> {
               ],
             ),
             Positioned(
-              bottom: MediaQuery.sizeOf(context).height * 0.02,
-              right: MediaQuery.sizeOf(context).width * 0.045,
+              bottom: MediaQuery.sizeOf(context).height * 0.05,
+              right: MediaQuery.sizeOf(context).width * 0.25,
               child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.2,
-                width: MediaQuery.sizeOf(context).width * 0.4,
+                height: MediaQuery.sizeOf(context).height * 0.15,
+                width: MediaQuery.sizeOf(context).width * 0.5,
                 child: Stack(
                   children: [
                     AnimatedAlign(
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.easeInOut,
-                      alignment:
-                          selected ? Alignment.topRight : Alignment.bottomRight,
+                      alignment: selected
+                          ? Alignment.bottomRight
+                          : Alignment.bottomCenter,
                       child: Visibility(
                           visible: selected,
                           child: imageIcons(name: 'gmail', size: 50)),
                     ),
-                    AnimatedSlide(
+                    AnimatedAlign(
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.easeInOut,
-                      offset: selected
-                          ? const Offset(0.7, 1)
-                          : const Offset(2, 2.5),
+                      alignment: selected
+                          ? Alignment.topCenter
+                          : Alignment.bottomCenter,
                       child: Visibility(
                           visible: selected,
                           child: imageIcons(name: 'github', size: 50)),
@@ -330,7 +331,7 @@ class _MyHomePageState extends State<HomeScreen> {
                       curve: Curves.easeInOut,
                       alignment: selected
                           ? Alignment.bottomLeft
-                          : Alignment.bottomRight,
+                          : Alignment.bottomCenter,
                       child: Visibility(
                           visible: selected,
                           child: imageIcons(name: 'linkdin', size: 50)),
