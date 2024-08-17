@@ -142,160 +142,10 @@ class _MyHomePageState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                Card(
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text("EXPERIENCE",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w900,
-                                  foreground: Paint()
-                                    ..shader = const LinearGradient(
-                                      colors: <Color>[
-                                        Color(0xffDA44bb),
-                                        Color(0xff8921aa),
-                                        Colors.black54
-                                      ],
-                                    ).createShader(const Rect.fromLTWH(
-                                        0.0, 0.0, 200.0, 70.0)))),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: const EdgeInsets.all(10),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0, left: 10),
-                            child: Text("SKILLS",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w900,
-                                    foreground: Paint()
-                                      ..shader = const LinearGradient(
-                                        colors: <Color>[
-                                          Color(0xffDA44bb),
-                                          Color(0xff8921aa),
-                                          Colors.black54
-                                        ],
-                                      ).createShader(const Rect.fromLTWH(
-                                          0.0, 0.0, 200.0, 70.0)))),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 150,
-                          child: ListView.builder(
-                            itemCount: 5,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return const Card(
-                                color: Colors.purple,
-                                child: Row(
-                                  children: [
-                                    Text("Text"),
-                                    Text("Text"),
-                                    Text("Text"),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text("EDUCATION",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w900,
-                                  foreground: Paint()
-                                    ..shader = const LinearGradient(
-                                      colors: <Color>[
-                                        Color(0xffDA44bb),
-                                        Color(0xff8921aa),
-                                        Colors.black54
-                                      ],
-                                    ).createShader(const Rect.fromLTWH(
-                                        0.0, 0.0, 200.0, 70.0)))),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: const EdgeInsets.all(10),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0, left: 10),
-                            child: Text("HOBBIES",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w900,
-                                    foreground: Paint()
-                                      ..shader = const LinearGradient(
-                                        colors: <Color>[
-                                          Color(0xffDA44bb),
-                                          Color(0xff8921aa),
-                                          Colors.black54
-                                        ],
-                                      ).createShader(const Rect.fromLTWH(
-                                          0.0, 0.0, 200.0, 70.0)))),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 150,
-                          child: ListView.builder(
-                            itemCount: 5,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return const Card(
-                                color: Colors.purple,
-                                child: Row(
-                                  children: [
-                                    Text("Text"),
-                                    Text("Text"),
-                                    Text("Text"),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                commonWidget(name: "EXPERIENCE", isListRequired: false),
+                commonWidget(name: "SKILLS", isListRequired: true),
+                commonWidget(name: "EDUCATION", isListRequired: false),
+                commonWidget(name: "HOBBIES", isListRequired: true)
               ],
             ),
             Positioned(
@@ -431,6 +281,74 @@ class _MyHomePageState extends State<HomeScreen> {
     );
   }
 
+  Widget commonWidget({required String name, required bool isListRequired}) {
+    return Card(
+      margin: const EdgeInsets.all(10),
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 10),
+                  child: Text(name,
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w900,
+                          foreground: Paint()
+                            ..shader = const LinearGradient(
+                              colors: <Color>[
+                                Color(0xffDA44bb),
+                                Color(0xff8921aa),
+                                Colors.black54
+                              ],
+                            ).createShader(
+                                const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)))),
+                ),
+                const Spacer(),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(100),
+                    onTap: () {},
+                    child: const Icon(Icons.arrow_forward_ios_rounded),
+                  ),
+                ),
+              ],
+            ),
+            Visibility(
+              visible: isListRequired,
+              child: SizedBox(
+                height: 150,
+                child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return const Card(
+                      color: Colors.purple,
+                      child: Row(
+                        children: [
+                          Text("Text"),
+                          Text("Text"),
+                          Text("Text"),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget imageIcons({required String name, required double size}) {
     return InkWell(
       child: Image.asset(
@@ -459,23 +377,6 @@ class _MyHomePageState extends State<HomeScreen> {
         _onItemTapped(index);
         Navigator.pop(context);
       },
-    );
-  }
-
-  Widget myWidget(BuildContext context) {
-    return MediaQuery.removePadding(
-      context: context,
-      removeTop: true,
-      removeBottom: true,
-      child: AnimatedList(
-          initialItemCount: 50,
-          itemBuilder:
-              (BuildContext context, int index, Animation<double> animation) {
-            return Card(
-              color: Colors.amber,
-              child: Center(child: Text('$index')),
-            );
-          }),
     );
   }
 }

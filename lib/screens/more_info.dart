@@ -195,6 +195,7 @@ class _MoreInfoState extends State<MoreInfo> with TickerProviderStateMixin {
           mainAxisSize: MainAxisSize.min,
           children: [
             Card(
+              elevation: 5,
               margin: const EdgeInsets.all(10),
               borderOnForeground: true,
               child: ListTile(
