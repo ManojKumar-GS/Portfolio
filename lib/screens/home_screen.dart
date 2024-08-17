@@ -299,7 +299,7 @@ class _MyHomePageState extends State<HomeScreen> {
               ],
             ),
             Positioned(
-              bottom: MediaQuery.sizeOf(context).height * 0.05,
+              bottom: MediaQuery.sizeOf(context).height * 0.02,
               right: MediaQuery.sizeOf(context).width * 0.25,
               child: SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.15,
