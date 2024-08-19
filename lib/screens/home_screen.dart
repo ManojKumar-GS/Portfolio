@@ -17,6 +17,23 @@ class _MyHomePageState extends State<HomeScreen> {
   int _selectedIndex = 0;
   bool selected = false;
   Offset offset = const Offset(1, 0);
+
+  List skills = [
+    {'name': 'Dart/Flutter', 'image': "skills", "rating": 4},
+    {'name': 'Node js', 'image': "skills", "rating": 3},
+    {'name': 'Java', 'image': "skills", "rating": 3},
+    {'name': 'JavaScript', 'image': "skills", "rating": 3},
+    {'name': 'HTML & CSS', 'image': "skills", "rating": 3},
+    {'name': 'Neo4j', 'image': "skills", "rating": 4},
+    {'name': 'SQL', 'image': "skills", "rating": 3},
+  ];
+  List hobbies = [
+    {'name': 'Sports', 'image': "hobby", "rating": 4},
+    {'name': 'Listening Music', 'image': "hobby", "rating": 3},
+    {'name': 'Fitness', 'image': "hobby", "rating": 3},
+    {'name': 'Wall drawing', 'image': "hobby", "rating": 3},
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -142,10 +159,10 @@ class _MyHomePageState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                commonWidget(name: "EXPERIENCE", isListRequired: false),
-                commonWidget(name: "SKILLS", isListRequired: true),
-                commonWidget(name: "EDUCATION", isListRequired: false),
-                commonWidget(name: "HOBBIES", isListRequired: true)
+                commonWidget(name: "EXPERIENCE"),
+                commonWidget(name: "SKILLS", list: skills),
+                commonWidget(name: "EDUCATION"),
+                commonWidget(name: "HOBBIES", list: hobbies)
               ],
             ),
             Positioned(
@@ -281,7 +298,7 @@ class _MyHomePageState extends State<HomeScreen> {
     );
   }
 
-  Widget commonWidget({required String name, required bool isListRequired}) {
+  Widget commonWidget({required String name, List? list}) {
     return Card(
       margin: const EdgeInsets.all(10),
       elevation: 5,
@@ -321,29 +338,83 @@ class _MyHomePageState extends State<HomeScreen> {
               ],
             ),
             Visibility(
-              visible: isListRequired,
+              visible: (list ?? []).isNotEmpty,
               child: SizedBox(
                 height: 150,
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: list?.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const Card(
-                      color: Colors.purple,
-                      child: Row(
-                        children: [
-                          Text("Text"),
-                          Text("Text"),
-                          Text("Text"),
-                        ],
-                      ),
-                    );
+                    return cards(
+                        name: list?[index]["name"],
+                        image: list?[index]["image"],
+                        rating: list?[index]["rating"]);
                   },
                 ),
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget cards(
+      {required String name, required String image, required int rating}) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          gradient: LinearGradient(
+            colors: [
+              const HSLColor.fromAHSL(1, 146, 0.39, 0.53)
+                  .toColor(), // hsla(146, 39%, 53%, 1)
+              const HSLColor.fromAHSL(1, 160, 0.44, 0.73)
+                  .toColor(), // hsla(160, 44%, 73%, 1)
+              const HSLColor.fromAHSL(1, 227, 0.60, 0.81)
+                  .toColor(), // hsla(227, 60%, 81%, 1)
+              const HSLColor.fromAHSL(1, 178, 0.54, 0.79)
+                  .toColor(), // hsla(178, 54%, 79%, 1)
+              const HSLColor.fromAHSL(1, 189, 1.00, 0.68)
+                  .toColor(), // hsla(189, 100%, 68%, 1)
+              const HSLColor.fromAHSL(1, 265, 0.68, 0.45)
+                  .toColor(), // hsla(265, 68%, 45%, 1)
+            ],
+            stops: const [0.0, 0.0, 0.0, 0.99, 1.0, 1.0],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Card(
+          elevation: 10,
+          margin: const EdgeInsets.all(7),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                "assets/icons/$image.png",
+                width: 50,
+                height: 50,
+              ),
+              Text(name),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.star_rate, size: 20),
+                    const Icon(Icons.star_rate, size: 20),
+                    const Icon(Icons.star_rate, size: 20),
+                    rating != 3
+                        ? const Icon(Icons.star_rate, size: 20)
+                        : const Icon(Icons.star_rate_outlined, size: 20),
+                    const Icon(Icons.star_rate_outlined, size: 20),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
