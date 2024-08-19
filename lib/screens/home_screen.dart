@@ -54,6 +54,7 @@ class _MyHomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xFFEBF0F1),
         key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Stack(children: [
@@ -301,7 +302,7 @@ class _MyHomePageState extends State<HomeScreen> {
   Widget commonWidget({required String name, List? list}) {
     return Card(
       margin: const EdgeInsets.all(10),
-      elevation: 5,
+      elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
