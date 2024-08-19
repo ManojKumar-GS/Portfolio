@@ -161,10 +161,28 @@ class _MyHomePageState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                commonWidget(name: "EXPERIENCE"),
-                commonWidget(name: "SKILLS", list: skills),
-                commonWidget(name: "EDUCATION"),
-                commonWidget(name: "HOBBIES", list: hobbies)
+                commonWidget(name: "EXPERIENCE", onTap: () {}),
+                commonWidget(
+                    name: "SKILLS",
+                    list: skills,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SkillsScreen(
+                                title: "Skills",
+                                list: skills,
+                              )));
+                    }),
+                commonWidget(name: "EDUCATION", onTap: () {}),
+                commonWidget(
+                    name: "HOBBIES",
+                    list: hobbies,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SkillsScreen(
+                                title: "Hobby",
+                                list: hobbies,
+                              )));
+                    })
               ],
             ),
             Positioned(
@@ -300,7 +318,8 @@ class _MyHomePageState extends State<HomeScreen> {
     );
   }
 
-  Widget commonWidget({required String name, List? list}) {
+  Widget commonWidget(
+      {required String name, List? list, required VoidCallback onTap}) {
     return Card(
       margin: const EdgeInsets.all(10),
       elevation: 2,
@@ -333,13 +352,7 @@ class _MyHomePageState extends State<HomeScreen> {
                   width: 50,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(100),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SkillsScreen(
-                                title: "Skills",
-                                list: skills,
-                              )));
-                    },
+                    onTap: onTap,
                     child: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
                 ),

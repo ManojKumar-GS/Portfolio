@@ -47,7 +47,8 @@ class _SkillsScreenState extends State<SkillsScreen> {
                             ).createShader(
                                 const Rect.fromLTWH(50.0, 50.0, 200.0, 70.0)))),
                   // const Spacer(),
-                  Image.asset("assets/icons/${widget.title.toLowerCase()}.png"),
+                  Image.asset("assets/icons/${widget.title.toLowerCase()}.png",
+                      width: 50, height: 50),
                 ],
               ),
             ),
