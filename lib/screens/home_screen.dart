@@ -335,7 +335,10 @@ class _MyHomePageState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(100),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SkillsScreen()));
+                          builder: (context) => SkillsScreen(
+                                title: "Skills",
+                                list: skills,
+                              )));
                     },
                     child: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
