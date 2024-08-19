@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/screens/exp.dart';
 import 'package:portfolio/screens/more_info.dart';
+import 'package:portfolio/screens/skills.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFEBF0F1),
+        backgroundColor: const Color(0xFFEBF0F1),
         key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Stack(children: [
@@ -332,7 +333,10 @@ class _MyHomePageState extends State<HomeScreen> {
                   width: 50,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(100),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const SkillsScreen()));
+                    },
                     child: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
                 ),
