@@ -263,19 +263,33 @@ class _MyHomePageState extends State<HomeScreen> {
                     offset: offset,
                     duration: const Duration(milliseconds: 5000),
                     child: drawerElements(
+                        onTap: () {},
                         image: "assets/icons/education.png",
                         name: 'Education',
                         index: 0),
                   ),
                   drawerElements(
+                      onTap: () {},
                       image: "assets/icons/exp.png",
                       name: 'Experience',
                       index: 1),
                   drawerElements(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              SkillsScreen(title: "SKILLS", list: skills),
+                        ));
+                      },
                       image: "assets/icons/skills.png",
                       name: 'Skills',
                       index: 2),
                   drawerElements(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              SkillsScreen(title: "HOBBY", list: hobbies),
+                        ));
+                      },
                       image: "assets/icons/hobby.png",
                       name: 'Hobbies',
                       index: 3),
@@ -453,7 +467,10 @@ class _MyHomePageState extends State<HomeScreen> {
   }
 
   Widget drawerElements(
-      {required String image, required String name, required int index}) {
+      {required String image,
+      required String name,
+      required int index,
+      required Function onTap}) {
     return ListTile(
       minVerticalPadding: MediaQuery.sizeOf(context).height * 0.05,
       textColor: Colors.black,
@@ -467,7 +484,7 @@ class _MyHomePageState extends State<HomeScreen> {
       ),
       onTap: () {
         _onItemTapped(index);
-        Navigator.pop(context);
+        onTap();
       },
     );
   }
