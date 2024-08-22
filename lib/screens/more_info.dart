@@ -191,99 +191,102 @@ class _MoreInfoState extends State<MoreInfo> with TickerProviderStateMixin {
       },
       child: Hero(
         tag: name,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Card(
-              elevation: 5,
-              margin: const EdgeInsets.all(10),
-              borderOnForeground: true,
-              child: ListTile(
-                title: Text(
-                  name,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: AutofillHints.impp),
-                ),
-                subtitle: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                              color: lang == "Dart"
-                                  ? Colors.blueAccent
-                                  : Colors.purple,
-                              shape: BoxShape.circle,
-                              border: const Border()),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(lang),
-                        ),
-                        const SizedBox(width: 30),
-                        Container(
-                          height: 10,
-                          width: 10,
-                          decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle,
-                              border: Border()),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0),
-                          child: Text("Others"),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: SizeTransition(
-                        sizeFactor: _animation,
-                        axis: Axis.horizontal,
-                        axisAlignment: -1,
-                        child: Container(
-                          height: 10,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                lang == "Dart"
-                                    ? Colors.blueAccent
-                                    : Colors.purple,
-                                lang == "Dart"
-                                    ? Colors.blueAccent
-                                    : Colors.purple,
-                                lang == "Dart"
-                                    ? Colors.blueAccent
-                                    : Colors.purple,
-                                Colors.grey
-                              ]),
-                              color: Colors.grey,
-                              shape: BoxShape.rectangle,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              border: const Border()),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Card(
+                elevation: 5,
+                margin: const EdgeInsets.all(10),
+                borderOnForeground: true,
+                child: ListTile(
+                  title: Text(
+                    name,
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: AutofillHints.impp),
+                  ),
+                  subtitle: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                  color: lang == "Dart"
+                                      ? Colors.blueAccent
+                                      : Colors.purple,
+                                  shape: BoxShape.circle,
+                                  border: const Border()),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(lang),
+                            ),
+                            const SizedBox(width: 30),
+                            Container(
+                              height: 10,
+                              width: 10,
+                              decoration: const BoxDecoration(
+                                  color: Colors.grey,
+                                  shape: BoxShape.circle,
+                                  border: Border()),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Text("Others"),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: SizeTransition(
+                          sizeFactor: _animation,
+                          axis: Axis.horizontal,
+                          axisAlignment: -1,
+                          child: Container(
+                            height: 10,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                                  lang == "Dart"
+                                      ? Colors.blueAccent
+                                      : Colors.purple,
+                                  lang == "Dart"
+                                      ? Colors.blueAccent
+                                      : Colors.purple,
+                                  lang == "Dart"
+                                      ? Colors.blueAccent
+                                      : Colors.purple,
+                                  Colors.grey
+                                ]),
+                                color: Colors.grey,
+                                shape: BoxShape.rectangle,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                border: const Border()),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  contentPadding: const EdgeInsets.all(20),
+                  leading: Image.asset(image, width: 100, height: 100),
                 ),
-                contentPadding: const EdgeInsets.all(20),
-                leading: Image.asset(image, width: 100, height: 100),
               ),
-            ),
-            /* SizedBox(
-                width: MediaQuery.sizeOf(context).width * 0.8,
-                child: const Divider())*/
-          ],
+              /* SizedBox(
+                  width: MediaQuery.sizeOf(context).width * 0.8,
+                  child: const Divider())*/
+            ],
+          ),
         ),
       ),
     );
