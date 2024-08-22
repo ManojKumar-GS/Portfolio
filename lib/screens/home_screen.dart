@@ -20,13 +20,13 @@ class _MyHomePageState extends State<HomeScreen> {
   Offset offset = const Offset(1, 0);
 
   List skills = [
-    {'name': 'Dart/Flutter', 'image': "skills", "rating": 4},
-    {'name': 'Node js', 'image': "skills", "rating": 3},
-    {'name': 'Java', 'image': "skills", "rating": 3},
-    {'name': 'JavaScript', 'image': "skills", "rating": 3},
-    {'name': 'HTML & CSS', 'image': "skills", "rating": 3},
-    {'name': 'Neo4j', 'image': "skills", "rating": 4},
-    {'name': 'SQL', 'image': "skills", "rating": 3},
+    {'name': 'Dart/Flutter', 'image': "flutter", "rating": 4},
+    {'name': 'Node js', 'image': "node", "rating": 3},
+    {'name': 'Java', 'image': "java", "rating": 3},
+    {'name': 'JavaScript', 'image': "js", "rating": 3},
+    {'name': 'HTML & CSS', 'image': "css", "rating": 3},
+    {'name': 'Neo4j', 'image': "database", "rating": 4},
+    {'name': 'SQL', 'image': "database", "rating": 3},
   ];
   List hobbies = [
     {'name': 'Sports', 'image': "hobby", "rating": 4},
