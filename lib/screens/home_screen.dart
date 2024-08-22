@@ -30,9 +30,9 @@ class _MyHomePageState extends State<HomeScreen> {
   ];
   List hobbies = [
     {'name': 'Sports', 'image': "hobby", "rating": 4},
-    {'name': 'Listening Music', 'image': "hobby", "rating": 3},
-    {'name': 'Fitness', 'image': "hobby", "rating": 3},
-    {'name': 'Wall drawing', 'image': "hobby", "rating": 3},
+    {'name': 'Listening Music', 'image': "music", "rating": 3},
+    {'name': 'Fitness', 'image': "fitness", "rating": 3},
+    {'name': 'Wall drawing', 'image': "drawing", "rating": 3},
   ];
 
   void _onItemTapped(int index) {
