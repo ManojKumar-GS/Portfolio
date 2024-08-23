@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/about_me.dart';
 import 'package:portfolio/screens/exp.dart';
 import 'package:portfolio/screens/more_info.dart';
 import 'package:portfolio/screens/skills.dart';
@@ -161,7 +162,12 @@ class _MyHomePageState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                commonWidget(name: "EXPERIENCE", onTap: () {}),
+                commonWidget(
+                    name: "EXPERIENCE",
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AboutMe()));
+                    }),
                 commonWidget(
                     name: "SKILLS",
                     list: skills,
@@ -185,7 +191,7 @@ class _MyHomePageState extends State<HomeScreen> {
                     })
               ],
             ),
-            Positioned(
+            /*Positioned(
               bottom: MediaQuery.sizeOf(context).height * 0.02,
               right: MediaQuery.sizeOf(context).width * 0.25,
               child: SizedBox(
@@ -226,7 +232,7 @@ class _MyHomePageState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            ),
+            ),*/
           ]),
         ),
         floatingActionButtonLocation:
@@ -235,9 +241,56 @@ class _MyHomePageState extends State<HomeScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           onPressed: () {
-            setState(() {
+            showModalBottomSheet(
+              backgroundColor: Colors.black54,
+              context: context,
+              builder: (context) {
+                return BackdropFilter(
+                  filter: ImageFilter.blur(sigmaY: 1, sigmaX: 1),
+                  child: SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).height * 0.7,
+                    child: Column(
+                      children: [
+                        drawerElements(
+                            onTap: () {},
+                            image: "education",
+                            name: 'Education',
+                            index: 0),
+                        drawerElements(
+                            onTap: () {},
+                            image: "exp",
+                            name: 'Experience',
+                            index: 1),
+                        drawerElements(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    SkillsScreen(title: "SKILLS", list: skills),
+                              ));
+                            },
+                            image: "skills",
+                            name: 'Skills',
+                            index: 2),
+                        drawerElements(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    SkillsScreen(title: "HOBBY", list: hobbies),
+                              ));
+                            },
+                            image: "hobby",
+                            name: 'Hobbies',
+                            index: 3),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            /*setState(() {
               selected = !selected;
-            });
+            });*/
           },
           child: selected
               ? const Icon(Icons.close)
@@ -259,20 +312,13 @@ class _MyHomePageState extends State<HomeScreen> {
                   const SizedBox(
                     height: 80,
                   ),
-                  AnimatedSlide(
-                    offset: offset,
-                    duration: const Duration(milliseconds: 5000),
-                    child: drawerElements(
-                        onTap: () {},
-                        image: "assets/icons/education.png",
-                        name: 'Education',
-                        index: 0),
-                  ),
                   drawerElements(
                       onTap: () {},
-                      image: "assets/icons/exp.png",
-                      name: 'Experience',
-                      index: 1),
+                      image: "education",
+                      name: 'Education',
+                      index: 0),
+                  drawerElements(
+                      onTap: () {}, image: "exp", name: 'Experience', index: 1),
                   drawerElements(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -280,7 +326,7 @@ class _MyHomePageState extends State<HomeScreen> {
                               SkillsScreen(title: "SKILLS", list: skills),
                         ));
                       },
-                      image: "assets/icons/skills.png",
+                      image: "skills",
                       name: 'Skills',
                       index: 2),
                   drawerElements(
@@ -290,7 +336,7 @@ class _MyHomePageState extends State<HomeScreen> {
                               SkillsScreen(title: "HOBBY", list: hobbies),
                         ));
                       },
-                      image: "assets/icons/hobby.png",
+                      image: "hobby",
                       name: 'Hobbies',
                       index: 3),
                 ],
@@ -455,6 +501,8 @@ class _MyHomePageState extends State<HomeScreen> {
     );
   }
 
+  showButtonModel() {}
+
   Widget imageIcons({required String name, required double size}) {
     return InkWell(
       child: Image.asset(
@@ -474,7 +522,7 @@ class _MyHomePageState extends State<HomeScreen> {
     return ListTile(
       minVerticalPadding: MediaQuery.sizeOf(context).height * 0.05,
       textColor: Colors.black,
-      leading: Image.asset(image),
+      leading: imageIcons(name: image, size: 50),
       title: Text(
         name,
         style: const TextStyle(

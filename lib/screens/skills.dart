@@ -107,6 +107,7 @@ class _SkillsScreenState extends State<SkillsScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.star_rate, size: 20),
                   const Icon(Icons.star_rate, size: 20),
