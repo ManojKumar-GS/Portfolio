@@ -65,9 +65,6 @@ class _MyHomePageState extends State<HomeScreen> {
                   _scaffoldKey.currentState!.isDrawerOpen
                       ? _scaffoldKey.currentState?.closeDrawer()
                       : _scaffoldKey.currentState?.openDrawer();
-                  /* Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ExampleStaggeredAnimations(),
-                  ));*/
                 },
                 icon: const Icon(Icons.menu)),
             Column(
@@ -165,29 +162,20 @@ class _MyHomePageState extends State<HomeScreen> {
                 commonWidget(
                     name: "EXPERIENCE",
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AboutMe()));
+                      navigate("exp");
                     }),
                 commonWidget(
                     name: "SKILLS",
                     list: skills,
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SkillsScreen(
-                                title: "Skills",
-                                list: skills,
-                              )));
+                      navigate("skills");
                     }),
                 commonWidget(name: "EDUCATION", onTap: () {}),
                 commonWidget(
                     name: "HOBBIES",
                     list: hobbies,
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SkillsScreen(
-                                title: "Hobby",
-                                list: hobbies,
-                              )));
+                      navigate("hobby");
                     })
               ],
             ),
@@ -253,31 +241,29 @@ class _MyHomePageState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         drawerElements(
-                            onTap: () {},
+                            onTap: () {
+                              navigate("education");
+                            },
                             image: "education",
                             name: 'Education',
                             index: 0),
                         drawerElements(
-                            onTap: () {},
+                            onTap: () {
+                              navigate("exp");
+                            },
                             image: "exp",
                             name: 'Experience',
                             index: 1),
                         drawerElements(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    SkillsScreen(title: "SKILLS", list: skills),
-                              ));
+                              navigate("skills");
                             },
                             image: "skills",
                             name: 'Skills',
                             index: 2),
                         drawerElements(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    SkillsScreen(title: "HOBBY", list: hobbies),
-                              ));
+                              navigate("hobby");
                             },
                             image: "hobby",
                             name: 'Hobbies',
@@ -288,9 +274,6 @@ class _MyHomePageState extends State<HomeScreen> {
                 );
               },
             );
-            /*setState(() {
-              selected = !selected;
-            });*/
           },
           child: selected
               ? const Icon(Icons.close)
@@ -313,28 +296,29 @@ class _MyHomePageState extends State<HomeScreen> {
                     height: 80,
                   ),
                   drawerElements(
-                      onTap: () {},
+                      onTap: () {
+                        navigate("education");
+                      },
                       image: "education",
                       name: 'Education',
                       index: 0),
                   drawerElements(
-                      onTap: () {}, image: "exp", name: 'Experience', index: 1),
+                      onTap: () {
+                        navigate("exp");
+                      },
+                      image: "exp",
+                      name: 'Experience',
+                      index: 1),
                   drawerElements(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              SkillsScreen(title: "SKILLS", list: skills),
-                        ));
+                        navigate("skills");
                       },
                       image: "skills",
                       name: 'Skills',
                       index: 2),
                   drawerElements(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              SkillsScreen(title: "HOBBY", list: hobbies),
-                        ));
+                        navigate("hobby");
                       },
                       image: "hobby",
                       name: 'Hobbies',
@@ -376,6 +360,29 @@ class _MyHomePageState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  navigate(String name) {
+    switch (name) {
+      case "education":
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const AboutMe()));
+        break;
+      case "exp":
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const AboutMe()));
+        break;
+      case "skills":
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SkillsScreen(title: "SKILLS", list: skills),
+        ));
+        break;
+      case "hobby":
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SkillsScreen(title: "Hobby", list: hobbies),
+        ));
+        break;
+    }
   }
 
   Widget commonWidget(
@@ -510,7 +517,9 @@ class _MyHomePageState extends State<HomeScreen> {
         height: size,
         width: size,
       ),
-      onTap: () {},
+      onTap: () {
+        navigate(name);
+      },
     );
   }
 
